@@ -83,7 +83,9 @@
     "text": "Clean out upstairs",
     "note": "",
     "category": "projects",
-    "createdAt": "2026-04-18T15:46:55.967Z"
+    "createdAt": "2026-04-18T15:46:55.967Z",
+    "checklist": [],
+    "priority": "medium"
   },
   {
     "id": "1776527189625",
