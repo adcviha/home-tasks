@@ -50,7 +50,8 @@
         "text": "Gather tax paper work",
         "done": false
       }
-    ]
+    ],
+    "priority": "medium"
   },
   {
     "id": "1776485086616",
