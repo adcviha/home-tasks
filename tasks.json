@@ -65,7 +65,9 @@
     "text": "Clean and tidy upstairs",
     "note": "",
     "category": "chores",
-    "createdAt": "2026-04-18T03:16:28.895Z"
+    "createdAt": "2026-04-18T03:16:28.895Z",
+    "checklist": [],
+    "priority": "easy"
   },
   {
     "id": "1776478871545",
