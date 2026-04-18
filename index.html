@@ -652,10 +652,10 @@ function playZelda(){
     // Long slow attack (~0.18s), full sustain, then a long gentle tail (~1.8s)
     const voices=[
       {freq:174.61, vol:0.18, delay:0.00},  // F3  — root, warm bass
-      {freq:220.00, vol:0.14, delay:0.03},  // A3  — major third
-      {freq:261.63, vol:0.13, delay:0.06},  // C4  — fifth
-      {freq:329.63, vol:0.11, delay:0.09},  // E4  — major seventh
-      {freq:392.00, vol:0.08, delay:0.12},  // G4  — ninth, airy top
+      {freq:220.00, vol:0.14, delay:0.00},  // A3  — major third
+      {freq:261.63, vol:0.13, delay:0.00},  // C4  — fifth
+      {freq:329.63, vol:0.11, delay:0.00},  // E4  — major seventh
+      {freq:392.00, vol:0.08, delay:0.00},  // G4  — ninth, airy top
     ];
 
     voices.forEach(({freq,vol,delay})=>{
@@ -664,7 +664,7 @@ function playZelda(){
       // slight  per voice for subtle chorus warmth
       osc.type='sine';
       osc.frequency.value=freq;
-      // osc.detune.value=(Math.random()-0.5)*4;
+      osc.detune.value=(Math.random()-0.5)*4;
       osc.connect(g);g.connect(A.destination);
 
       const t=now+delay;
