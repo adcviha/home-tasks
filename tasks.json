@@ -1,5 +1,51 @@
 [
   {
+    "id": "mo4x9qtvjqrco",
+    "text": "Finances",
+    "note": "",
+    "category": "chores",
+    "checklist": [
+      {
+        "id": "mo4x8z6y74kcl",
+        "text": "Gather Tax info",
+        "done": false
+      },
+      {
+        "id": "mo4x91ntym769",
+        "text": "Complete Taxes",
+        "done": false
+      },
+      {
+        "id": "mo4x94llab1yh",
+        "text": "Review Spending",
+        "done": false
+      },
+      {
+        "id": "mo4x98wnpikma",
+        "text": "Contact Lawyer for bank",
+        "done": false
+      },
+      {
+        "id": "mo4x9eo04tk5n",
+        "text": "Reduce Car insurance amount",
+        "done": false
+      },
+      {
+        "id": "mo4x9ipp2ugye",
+        "text": "List items for sale",
+        "done": false
+      },
+      {
+        "id": "mo4x9q7xf24kq",
+        "text": "Set monthly budget?",
+        "done": false
+      }
+    ],
+    "createdAt": "2026-04-18T22:42:12.883Z",
+    "updatedAt": "2026-04-18T22:42:12.883Z",
+    "priority": "medium"
+  },
+  {
     "id": "1776532815878",
     "text": "Cleaning",
     "note": "",
