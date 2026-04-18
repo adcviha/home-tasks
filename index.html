@@ -18,8 +18,6 @@ body { font-family: 'DM Sans', sans-serif; background: #f2efe8; color: #1c1a16; 
   --bg: #f2efe8; --surface: #ffffff;
   --border: rgba(28,26,22,0.11); --text: #1c1a16; --muted: #9a9689; --radius: 13px;
 }
-
-/* app shell */
 #app { display: none; flex-direction: column; height: 100dvh; overflow: hidden; }
 #app.ready { display: flex; }
 .app-bar { flex-shrink:0; display:flex; align-items:center; justify-content:space-between; padding:14px 22px; background:var(--surface); border-bottom:1px solid var(--border); z-index:50; }
@@ -29,7 +27,7 @@ body { font-family: 'DM Sans', sans-serif; background: #f2efe8; color: #1c1a16; 
 .sync-dot.show { display:block; }
 @keyframes pulse { 0%,100%{opacity:1}50%{opacity:.3} }
 .btn-add { background:var(--text); color:#f2efe8; border:none; border-radius:9px; padding:8px 16px; font-size:14px; font-weight:500; font-family:inherit; cursor:pointer; }
-.btn-icon { background:none; border:1px solid var(--border); border-radius:8px; padding:6px 10px; font-size:16px; cursor:pointer; line-height:1; transition:background .15s; font-family:inherit; }
+.btn-icon { background:none; border:1px solid var(--border); border-radius:8px; padding:6px 10px; font-size:16px; cursor:pointer; line-height:1; font-family:inherit; }
 .btn-icon.active { background:var(--text); color:#f2efe8; border-color:transparent; }
 
 /* desktop */
@@ -50,12 +48,8 @@ body { font-family: 'DM Sans', sans-serif; background: #f2efe8; color: #1c1a16; 
 .m-dots { flex-shrink:0; display:flex; justify-content:center; align-items:center; gap:8px; padding:14px 0; background:var(--bg); }
 .mdot { height:7px; border-radius:10px; transition:width .25s ease, opacity .25s ease; cursor:pointer; }
 
-/* cards — no hover lift, no text selection */
-.task-card {
-  border-radius:var(--radius); padding:12px 14px; cursor:pointer; margin-bottom:8px;
-  -webkit-user-select:none; user-select:none;
-  -webkit-tap-highlight-color:transparent;
-}
+/* cards */
+.task-card { border-radius:var(--radius); padding:12px 14px; cursor:pointer; margin-bottom:8px; -webkit-user-select:none; user-select:none; -webkit-tap-highlight-color:transparent; }
 .task-card:active { opacity:.82; }
 .card-top { display:flex; align-items:flex-start; justify-content:space-between; gap:8px; margin-bottom:3px; }
 .card-title { font-size:14px; font-weight:500; line-height:1.4; }
@@ -63,10 +57,7 @@ body { font-family: 'DM Sans', sans-serif; background: #f2efe8; color: #1c1a16; 
 .card-note { font-size:12px; line-height:1.4; margin:0 0 6px; opacity:.72; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .card-date { font-size:11px; opacity:.52; margin:0; }
 .card-checklist { margin-top:9px; border-top:1px solid rgba(0,0,0,0.1); padding-top:8px; display:flex; flex-direction:column; gap:4px; }
-.cl-row {
-  display:flex; align-items:center; gap:7px; padding:3px 0; cursor:pointer;
-  -webkit-user-select:none; user-select:none; -webkit-tap-highlight-color:transparent;
-}
+.cl-row { display:flex; align-items:center; gap:7px; padding:3px 0; cursor:pointer; -webkit-user-select:none; user-select:none; -webkit-tap-highlight-color:transparent; }
 .cl-box { width:16px; height:16px; border-radius:4px; flex-shrink:0; border:1.5px solid rgba(0,0,0,0.22); display:flex; align-items:center; justify-content:center; transition:background .12s; }
 .cl-box.checked { background:rgba(0,0,0,0.28); border-color:transparent; }
 .cl-check-svg { width:8px; height:8px; display:none; }
@@ -91,12 +82,7 @@ body { font-family: 'DM Sans', sans-serif; background: #f2efe8; color: #1c1a16; 
 .modal-close { background:none; border:none; font-size:24px; line-height:1; cursor:pointer; opacity:.5; padding:0; flex-shrink:0; margin-left:8px; }
 .modal-body { padding:18px 20px 22px; }
 .field-label { font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin:0 0 6px; display:block; }
-.field-input, .field-textarea {
-  width:100%; padding:10px 12px; border:1px solid rgba(28,26,22,.13); border-radius:10px;
-  font-family:inherit; font-size:16px; background:#faf9f5; color:var(--text);
-  outline:none; transition:border-color .15s; margin-bottom:16px;
-  -webkit-appearance:none; appearance:none;
-}
+.field-input, .field-textarea { width:100%; padding:10px 12px; border:1px solid rgba(28,26,22,.13); border-radius:10px; font-family:inherit; font-size:16px; background:#faf9f5; color:var(--text); outline:none; transition:border-color .15s; margin-bottom:16px; -webkit-appearance:none; appearance:none; }
 .field-input:focus, .field-textarea:focus { border-color:rgba(28,26,22,.32); background:#fff; }
 .field-textarea { resize:none; height:74px; }
 .field-date { font-size:12px; color:var(--muted); margin:0 0 18px; }
@@ -105,8 +91,6 @@ body { font-family: 'DM Sans', sans-serif; background: #f2efe8; color: #1c1a16; 
 .cpill.active { opacity:1; border-color:rgba(0,0,0,.2); }
 .ppill { padding:6px 14px; border-radius:20px; font-size:13px; font-weight:500; cursor:pointer; border:2px solid transparent; background:rgba(28,26,22,.07); color:var(--text); opacity:.5; transition:opacity .15s, border-color .15s; -webkit-tap-highlight-color:transparent; }
 .ppill.active { opacity:1; border-color:rgba(28,26,22,.22); background:rgba(28,26,22,.12); }
-
-/* checklist in modal */
 .cl-modal-item { display:flex; align-items:center; gap:9px; padding:8px 0; border-bottom:1px solid var(--border); }
 .cl-modal-box { width:18px; height:18px; border-radius:5px; flex-shrink:0; cursor:pointer; border:1.5px solid var(--border); display:flex; align-items:center; justify-content:center; transition:background .12s, border-color .12s; -webkit-tap-highlight-color:transparent; }
 .cl-modal-box.checked { background:#4d55a3; border-color:#4d55a3; }
@@ -139,7 +123,7 @@ body { font-family: 'DM Sans', sans-serif; background: #f2efe8; color: #1c1a16; 
 #loading.show { display:flex; }
 .loading-title { font-family:'Playfair Display',serif; font-size:22px; }
 .loading-sub { font-size:14px; color:var(--muted); }
-.toast { position:fixed; bottom:28px; left:50%; transform:translateX(-50%) translateY(70px); background:#1c1a16; color:#f2efe8; padding:10px 20px; border-radius:10px; font-size:14px; z-index:500; transition:transform .28s; pointer-events:none; }
+.toast { position:fixed; bottom:28px; left:50%; transform:translateX(-50%) translateY(70px); background:#1c1a16; color:#f2efe8; padding:10px 20px; border-radius:10px; font-size:14px; z-index:500; transition:transform .28s; pointer-events:none; white-space:nowrap; }
 .toast.show { transform:translateX(-50%) translateY(0); }
 #confetti-canvas { position:fixed; inset:0; pointer-events:none; z-index:1000; display:none; }
 </style>
@@ -173,7 +157,7 @@ body { font-family: 'DM Sans', sans-serif; background: #f2efe8; color: #1c1a16; 
     <span class="app-title">Notes 🐛</span>
     <div class="app-right">
       <div class="sync-dot" id="sync-dot"></div>
-      <button class="btn-icon" id="sort-btn" onclick="toggleSort()" title="Sort by effort">⏱</button>
+      <button class="btn-icon" id="sort-btn" onclick="toggleSort()" title="Focus: easy tasks first">⏱</button>
       <button class="btn-icon" onclick="openSettings()">⚙</button>
       <button class="btn-add" onclick="openAdd()">+ Add task</button>
     </div>
@@ -255,14 +239,19 @@ const CATS = [
   { id:'sofia',    label:'Sofia',    color:'#6da892', text:'#1a3329' },
 ];
 const PRIO = { easy:'Easy', medium:'Medium', deep:'Deep' };
-const PRIO_ORDER = { deep:0, medium:1, easy:2 };
+// sort: easy tasks float to top → ascending effort order
+const PRIO_ORDER = { easy:0, medium:1, deep:2 };
 const CFG_KEY = 'notes-caterpillar-v1';
 
 let cfg=null, tasks=[], fileSha=null;
 let editingId=null, selCat='chores', selPriority=null, editChecklist=[];
-let mobileCol=0, saveTimer=null, sortActive=false;
+let mobileCol=0, sortActive=false;
+// Track IDs deleted in this session so merges don't resurrect them
+let deletedIds = new Set();
+let pollTimer=null;
 
 const $=id=>document.getElementById(id);
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 
 function init(){
   buildCatPills();
@@ -290,8 +279,14 @@ async function setupConnect(){
   err.classList.remove('show');
   if(!user||!repo||!token){err.textContent='Please fill in all three fields.';err.classList.add('show');return;}
   btn.textContent='Connecting…';btn.disabled=true;cfg={user,repo,token};
-  try{ await loadTasks(); localStorage.setItem(CFG_KEY,JSON.stringify(cfg)); hideSetup(); }
-  catch{ err.textContent='Could not connect — check username, repo name, and token.'; err.classList.add('show'); btn.textContent='Connect & go'; btn.disabled=false; cfg=null; }
+  try{
+    await loadTasks();
+    localStorage.setItem(CFG_KEY,JSON.stringify(cfg));
+    hideSetup();
+  } catch {
+    err.textContent='Could not connect — check username, repo name, and token.';
+    err.classList.add('show');btn.textContent='Connect & go';btn.disabled=false;cfg=null;
+  }
 }
 function openSettings(){
   $('s-user').value=cfg?.user||''; $('s-repo').value=cfg?.repo||''; $('s-token').value=cfg?.token||'';
@@ -304,36 +299,119 @@ const apiUrl=()=>`https://api.github.com/repos/${cfg.user}/${cfg.repo}/contents/
 const hdrs=()=>({Authorization:`token ${cfg.token}`,Accept:'application/vnd.github.v3+json','Content-Type':'application/json'});
 function b64enc(s){return btoa(encodeURIComponent(s).replace(/%([0-9A-F]{2})/g,(_,p)=>String.fromCharCode(parseInt(p,16))));}
 function b64dec(b){return decodeURIComponent(Array.from(atob(b.replace(/\s/g,'')),c=>'%'+c.charCodeAt(0).toString(16).padStart(2,'0')).join(''));}
-async function loadTasks(){
+
+async function fetchRemote(){
   const res=await fetch(apiUrl(),{headers:hdrs()});
-  if(res.status===404){tasks=[];fileSha=null;await saveTasks(false);}
-  else if(!res.ok)throw new Error('load failed');
-  else{const d=await res.json();fileSha=d.sha;try{tasks=JSON.parse(b64dec(d.content));}catch{tasks=[];}}
-  showApp();render();
+  if(!res.ok) throw new Error('fetch failed '+res.status);
+  const d=await res.json();
+  let remote=[];
+  try{ remote=JSON.parse(b64dec(d.content)); }catch{}
+  return { sha:d.sha, tasks:remote };
 }
+
+async function loadTasks(){
+  try{
+    const r=await fetchRemote();
+    fileSha=r.sha; tasks=r.tasks;
+  } catch(e){
+    if(e.message.includes('404')){ tasks=[];fileSha=null; await saveTasks(false); }
+    else throw e;
+  }
+  showApp(); render(); startPolling();
+}
+
+/* ── smart merge ──
+   Called when our local SHA is stale (someone else saved while we were editing).
+   Strategy:
+     - Union of remote + local tasks by id
+     - If same id exists in both, pick the one with the newer updatedAt
+     - Any id in deletedIds is stripped out (respect our deletions)
+     - Any id that only exists in remote and NOT in deletedIds is kept (respect their adds)
+*/
+function mergeTasks(remote, local){
+  const map = new Map();
+  for(const t of remote){
+    if(!deletedIds.has(t.id)) map.set(t.id, t);
+  }
+  for(const t of local){
+    if(deletedIds.has(t.id)) continue;
+    if(map.has(t.id)){
+      // keep whichever was updated more recently
+      const existing=map.get(t.id);
+      const remoteTime=new Date(existing.updatedAt||existing.createdAt).getTime();
+      const localTime=new Date(t.updatedAt||t.createdAt).getTime();
+      if(localTime>remoteTime) map.set(t.id,t);
+    } else {
+      map.set(t.id,t);
+    }
+  }
+  // preserve remote ordering for tasks that only exist there; local-added go to front
+  const remoteIds=new Set(remote.map(t=>t.id));
+  const localOnly=[...map.values()].filter(t=>!remoteIds.has(t.id));
+  const rest=[...map.values()].filter(t=>remoteIds.has(t.id))
+    .sort((a,b)=>remote.findIndex(t=>t.id===a.id)-remote.findIndex(t=>t.id===b.id));
+  return [...localOnly, ...rest];
+}
+
 async function saveTasks(indicator=true){
-  if(indicator)showSync();
-  const body={message:'Update tasks',content:b64enc(JSON.stringify(tasks,null,2))};
-  if(fileSha)body.sha=fileSha;
+  if(indicator) showSync();
+  const content=b64enc(JSON.stringify(tasks,null,2));
+  const body={message:'Update tasks',content};
+  if(fileSha) body.sha=fileSha;
   const res=await fetch(apiUrl(),{method:'PUT',headers:hdrs(),body:JSON.stringify(body)});
-  if(!res.ok){hideSync();throw new Error('save failed');}
-  fileSha=(await res.json()).content.sha;hideSync();
+
+  if(res.status===409 || res.status===422){
+    // SHA conflict — someone else saved first. Fetch latest, merge, retry.
+    showToast('Syncing with latest changes…');
+    const remote=await fetchRemote();
+    tasks=mergeTasks(remote.tasks, tasks);
+    fileSha=remote.sha;
+    render();
+    // retry
+    const body2={message:'Update tasks (merged)',content:b64enc(JSON.stringify(tasks,null,2)),sha:fileSha};
+    const res2=await fetch(apiUrl(),{method:'PUT',headers:hdrs(),body:JSON.stringify(body2)});
+    if(!res2.ok){hideSync();throw new Error('retry failed');}
+    fileSha=(await res2.json()).content.sha;
+  } else if(!res.ok){
+    hideSync();throw new Error('save failed '+res.status);
+  } else {
+    fileSha=(await res.json()).content.sha;
+  }
+  hideSync();
 }
-function debounceSave(){
-  clearTimeout(saveTimer);
-  saveTimer=setTimeout(async()=>{ try{await saveTasks();}catch{showToast('Could not sync — check connection');} },1400);
+
+/* ── polling ──
+   Every 45s, check if remote SHA changed. If so, merge remote into local
+   (preserving any unsaved local edits) and re-render silently.
+*/
+function startPolling(){
+  clearInterval(pollTimer);
+  pollTimer=setInterval(async()=>{
+    if(!cfg||!fileSha) return;
+    try{
+      const remote=await fetchRemote();
+      if(remote.sha!==fileSha){
+        // Remote changed — merge their updates into our current state
+        tasks=mergeTasks(remote.tasks, tasks);
+        fileSha=remote.sha;
+        render();
+      }
+    }catch{}
+  }, 45000);
 }
 
 /* ── sort ── */
 function toggleSort(){
   sortActive=!sortActive;
   $('sort-btn').classList.toggle('active',sortActive);
+  $('sort-btn').title=sortActive?'Focus mode on (easy first — click to turn off)':'Focus: easy tasks first';
   render();
 }
-function sortedTasks(list){
-  if(!sortActive)return list;
+function sortedCol(list){
+  if(!sortActive) return list;
   return [...list].sort((a,b)=>{
-    const pa=PRIO_ORDER[a.priority]??3, pb=PRIO_ORDER[b.priority]??3;
+    const pa=a.priority!=null?PRIO_ORDER[a.priority]:99;
+    const pb=b.priority!=null?PRIO_ORDER[b.priority]:99;
     return pa-pb;
   });
 }
@@ -367,44 +445,41 @@ function cardHTML(t){
 
 function renderDesktop(){
   $('grid').innerHTML=CATS.map(c=>{
-    const col=sortedTasks(tasks.filter(t=>t.category===c.id));
+    const col=sortedCol(tasks.filter(t=>t.category===c.id));
     return `<div><div class="col-title">${c.label}</div>${col.length?col.map(cardHTML).join(''):'<div class="empty-col">Nothing here yet</div>'}</div>`;
   }).join('');
   attachCardEvents($('grid'));
 }
 function renderMobilePanels(){
   CATS.forEach((cat,i)=>{
-    const col=sortedTasks(tasks.filter(t=>t.category===cat.id));
+    const col=sortedCol(tasks.filter(t=>t.category===cat.id));
     $('m-panel-'+i).innerHTML=col.length?col.map(cardHTML).join(''):'<div class="empty-col" style="margin-top:32px">Nothing here yet</div>';
     attachCardEvents($('m-panel-'+i));
   });
   updateMobileHeader();buildDots();
 }
 
-/* ── card event delegation ── */
-/* Using event delegation instead of inline onclick fixes touch issues */
+/* ── event delegation ── */
 function attachCardEvents(container){
-  // remove old listener if re-attaching
-  container.removeEventListener('click',container._cardHandler);
-  container._cardHandler=function(e){
-    // checklist row tap?
+  container.removeEventListener('click',container._handler);
+  container._handler=function(e){
     const row=e.target.closest('.cl-row');
-    if(row){
-      e.stopPropagation();
-      cardToggleCheck(row.dataset.task,row.dataset.item);
-      return;
-    }
-    // card tap?
+    if(row){e.stopPropagation();cardToggleCheck(row.dataset.task,row.dataset.item);return;}
     const card=e.target.closest('.task-card');
     if(card) openEdit(card.dataset.id);
   };
-  container.addEventListener('click',container._cardHandler);
+  container.addEventListener('click',container._handler);
 }
 
 function cardToggleCheck(taskId,itemId){
   const t=tasks.find(x=>x.id===taskId);if(!t)return;
   const item=(t.checklist||[]).find(i=>i.id===itemId);if(!item)return;
-  item.done=!item.done;render();debounceSave();
+  item.done=!item.done;
+  t.updatedAt=new Date().toISOString();
+  render();
+  // debounced save for checklist taps
+  clearTimeout(cardToggleCheck._t);
+  cardToggleCheck._t=setTimeout(async()=>{ try{await saveTasks();}catch{showToast('Could not sync');} },1200);
 }
 
 /* ── mobile swipe ── */
@@ -425,9 +500,7 @@ function goCol(i){ mobileCol=i;updateMobileHeader();setTrackPos(i,0,true);buildD
 function setupMobileSwipe(){
   const vp=$('m-viewport');if(!vp)return;
   let sx=0,sy=0,dragging=false,moved=false;
-  vp.addEventListener('touchstart',e=>{
-    sx=e.touches[0].clientX;sy=e.touches[0].clientY;dragging=true;moved=false;
-  },{passive:true});
+  vp.addEventListener('touchstart',e=>{ sx=e.touches[0].clientX;sy=e.touches[0].clientY;dragging=true;moved=false; },{passive:true});
   vp.addEventListener('touchmove',e=>{
     if(!dragging)return;
     const dx=e.touches[0].clientX-sx,dy=e.touches[0].clientY-sy;
@@ -437,10 +510,8 @@ function setupMobileSwipe(){
     setTrackPos(mobileCol,clamped,false);
   },{passive:true});
   vp.addEventListener('touchend',e=>{
-    if(!dragging)return;
-    dragging=false;
-    // KEY FIX: only update track if this was an actual swipe, not a tap
-    if(!moved)return;
+    if(!dragging)return;dragging=false;
+    if(!moved)return; // tap — don't interfere with click
     const dx=e.changedTouches[0].clientX-sx;
     if(Math.abs(dx)>52){ if(dx<0&&mobileCol<3)mobileCol++; else if(dx>0&&mobileCol>0)mobileCol--; }
     updateMobileHeader();setTrackPos(mobileCol,0,true);buildDots();
@@ -457,13 +528,13 @@ function pickCat(id){
   $('pill-'+id).classList.add('active');
 }
 function pickPriority(p){
-  selPriority=selPriority===p?null:p; // tap again to deselect
+  selPriority=selPriority===p?null:p;
   document.querySelectorAll('.ppill').forEach(x=>x.classList.remove('active'));
   if(selPriority)$('pp-'+selPriority).classList.add('active');
 }
 function addClItem(){
   const input=$('cl-input'),text=input.value.trim();if(!text)return;
-  editChecklist.push({id:Date.now().toString()+Math.random().toString(36).slice(2),text,done:false});
+  editChecklist.push({id:uid(),text,done:false});
   input.value='';renderClModal();input.focus();
 }
 function removeClItem(id){ editChecklist=editChecklist.filter(i=>i.id!==id);renderClModal(); }
@@ -529,27 +600,32 @@ async function saveTask(){
   const note=$('f-note').value.trim();
   const cat=getActiveCat();
   const cl=JSON.parse(JSON.stringify(editChecklist));
+  const now=new Date().toISOString();
   if(editingId){
     const t=tasks.find(x=>x.id===editingId);
-    if(t){ t.text=text;t.note=note;t.category=cat;t.checklist=cl;
+    if(t){ t.text=text;t.note=note;t.category=cat;t.checklist=cl;t.updatedAt=now;
       if(selPriority)t.priority=selPriority; else delete t.priority; }
   } else {
-    const task={id:Date.now().toString(),text,note,category:cat,checklist:cl,createdAt:new Date().toISOString()};
+    const task={id:uid(),text,note,category:cat,checklist:cl,createdAt:now,updatedAt:now};
     if(selPriority)task.priority=selPriority;
     tasks.unshift(task);
   }
   closeModal();render();
   try{await saveTasks();}catch{showToast('Could not save — check connection');}
 }
+
 async function deleteTask(){
   if(!editingId)return;
+  deletedIds.add(editingId);
   tasks=tasks.filter(t=>t.id!==editingId);
   closeModal();render();
   try{await saveTasks();}catch{showToast('Could not save — check connection');}
 }
+
 async function completeTask(){
   if(!editingId)return;
   const id=editingId;
+  deletedIds.add(id);
   const card=$('card-'+id);
   let cx=window.innerWidth/2,cy=window.innerHeight/2;
   if(card){
@@ -559,24 +635,47 @@ async function completeTask(){
     requestAnimationFrame(()=>requestAnimationFrame(()=>{ card.style.transform='scale(0) rotate(10deg)';card.style.opacity='0'; }));
     setTimeout(()=>{ if(card.parentNode)card.remove(); },550);
   }
-  closeModal();playDone();fireConfetti(cx,cy);
+  closeModal();playZelda();fireConfetti(cx,cy);
   tasks=tasks.filter(t=>t.id!==id);
   setTimeout(()=>render(),600);
   try{await saveTasks();}catch{showToast('Could not save — check connection');}
 }
 
-/* ── sound ── */
-function playDone(){
+/* ── Zelda chest fanfare (synthesized) ── */
+function playZelda(){
   try{
-    const ctx=new(window.AudioContext||window.webkitAudioContext)();
-    [[0,523],[.1,659],[.2,784],[.32,1047],[.48,1319]].forEach(([t,f])=>{
-      const osc=ctx.createOscillator(),g=ctx.createGain();
-      osc.connect(g);g.connect(ctx.destination);
-      osc.frequency.value=f;osc.type='sine';
-      g.gain.setValueAtTime(0.2,ctx.currentTime+t);
-      g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+t+0.4);
-      osc.start(ctx.currentTime+t);osc.stop(ctx.currentTime+t+0.45);
-    });
+    const A=new(window.AudioContext||window.webkitAudioContext)();
+    const master=A.createGain();
+    master.gain.setValueAtTime(0.22,A.currentTime);
+    master.connect(A.destination);
+
+    function note(freq,start,dur,type='square',vol=1){
+      const o=A.createOscillator();
+      const g=A.createGain();
+      o.type=type;o.frequency.value=freq;
+      o.connect(g);g.connect(master);
+      g.gain.setValueAtTime(0,A.currentTime+start);
+      g.gain.linearRampToValueAtTime(vol,A.currentTime+start+0.01);
+      g.gain.setValueAtTime(vol,A.currentTime+start+dur-0.04);
+      g.gain.linearRampToValueAtTime(0,A.currentTime+start+dur);
+      o.start(A.currentTime+start);
+      o.stop(A.currentTime+start+dur+0.05);
+    }
+
+    // Zelda "item get" fanfare — ascending arpeggio then held chord
+    // B3 D#4 F#4 B4 (quick), then B4 sustained with harmony
+    const B3=246.94, Ds4=311.13, Fs4=369.99, B4=493.88, Ds5=622.25;
+    note(B3,  0,    0.12,'square',0.9);
+    note(Ds4, 0.10, 0.12,'square',0.9);
+    note(Fs4, 0.20, 0.12,'square',0.9);
+    note(B4,  0.30, 0.55,'square',1.0);
+    // harmony on the sustained note
+    note(Ds5, 0.30, 0.55,'square',0.5);
+    note(Fs4, 0.30, 0.55,'square',0.4);
+
+    // fade out master
+    master.gain.setValueAtTime(0.22,A.currentTime+0.6);
+    master.gain.linearRampToValueAtTime(0,A.currentTime+1.0);
   }catch(_){}
 }
 
@@ -616,7 +715,7 @@ function fireConfetti(cx,cy){
       }
     });
     if(any&&f++<440)requestAnimationFrame(loop);
-    else{canvas.style.display='none';}
+    else canvas.style.display='none';
   })();
 }
 
