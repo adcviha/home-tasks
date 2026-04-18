@@ -1,5 +1,30 @@
 [
   {
+    "id": "1776527679678",
+    "text": "Fart",
+    "note": "I gotta go",
+    "category": "chores",
+    "checklist": [
+      {
+        "id": "1776527664908d9pm513zdx",
+        "text": "Open but cheeks",
+        "done": false
+      },
+      {
+        "id": "1776527669631jr3rzofgwu",
+        "text": "Let gas escape",
+        "done": false
+      },
+      {
+        "id": "1776527677022iw4tga5mj9j",
+        "text": "Smelly scooped fart from hand",
+        "done": false
+      }
+    ],
+    "createdAt": "2026-04-18T15:54:39.678Z",
+    "priority": "heavy"
+  },
+  {
     "id": "1776527215967",
     "text": "Clean out upstairs",
     "note": "",
