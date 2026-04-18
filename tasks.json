@@ -1,5 +1,45 @@
 [
   {
+    "id": "1776531841408",
+    "text": "Gardening",
+    "note": "",
+    "category": "chores",
+    "checklist": [
+      {
+        "id": "1776531772532rpvg0b1u33k",
+        "text": "Remove Kale",
+        "done": false
+      },
+      {
+        "id": "177653177981257d5fy4f9ir",
+        "text": "Weed mint",
+        "done": false
+      },
+      {
+        "id": "17765317883608wuacubpb4d",
+        "text": "Prune Lavender",
+        "done": false
+      },
+      {
+        "id": "1776531803108lm6g6p7034j",
+        "text": "Tidy front beds",
+        "done": false
+      },
+      {
+        "id": "1776531813191p63e4r0ede",
+        "text": "Clean up rocks",
+        "done": false
+      },
+      {
+        "id": "177653183737501vb1ts7mejl",
+        "text": "Mow and Weedwack grass",
+        "done": false
+      }
+    ],
+    "createdAt": "2026-04-18T17:04:01.408Z",
+    "priority": "medium"
+  },
+  {
     "id": "1776530949757",
     "text": "Clear out under shed awning",
     "note": "",
