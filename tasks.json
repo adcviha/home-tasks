@@ -1,5 +1,45 @@
 [
   {
+    "id": "1776532815878",
+    "text": "Cleaning",
+    "note": "",
+    "category": "chores",
+    "checklist": [
+      {
+        "id": "1776532763710diz8ux1l0uo",
+        "text": "Vaccum mainfloor",
+        "done": false
+      },
+      {
+        "id": "1776532778027p52zqggnywd",
+        "text": "Tidy kitchen and living room",
+        "done": false
+      },
+      {
+        "id": "1776532784095huqac771br5",
+        "text": "Clean bathroom",
+        "done": false
+      },
+      {
+        "id": "17765327923779lnlk6taxts",
+        "text": "Put away clean laundry",
+        "done": false
+      },
+      {
+        "id": "1776532802545vuu41813iga",
+        "text": "Tidy & clean Audry's room",
+        "done": false
+      },
+      {
+        "id": "1776532814795vqbsix08qmd",
+        "text": "Tidy & clean our bedroom",
+        "done": false
+      }
+    ],
+    "createdAt": "2026-04-18T17:20:15.878Z",
+    "priority": "medium"
+  },
+  {
     "id": "1776532567757",
     "text": "House rearrangements",
     "note": "Breakfast Nook\nArt Room\nWork Bench\nMusic area",
