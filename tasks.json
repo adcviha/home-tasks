@@ -74,7 +74,9 @@
     "text": "Folding clothes",
     "note": "",
     "category": "chores",
-    "createdAt": "2026-04-18T02:21:11.545Z"
+    "createdAt": "2026-04-18T02:21:11.545Z",
+    "checklist": [],
+    "priority": "easy"
   },
   {
     "id": "1776476029709",
