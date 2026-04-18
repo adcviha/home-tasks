@@ -668,7 +668,7 @@ function playZelda(){
       osc.connect(g);g.connect(A.destination);
 
       const t=now+delay;
-      g.gain.setValueAtTime(0,t);
+      g.gain.setValueAtTime(vol, t+0.01);
       g.gain.linearRampToValueAtTime(vol, t+0.18);   // gentle rise
       g.gain.setValueAtTime(vol, t+0.7);              // hold
       g.gain.exponentialRampToValueAtTime(0.0001, t+2.6); // long peaceful fade
