@@ -1,5 +1,24 @@
 [
   {
+    "id": "1776531916141",
+    "text": "Yardwork",
+    "note": "",
+    "category": "projects",
+    "checklist": [
+      {
+        "id": "1776531881958fstl8hm8agm",
+        "text": "Clear out under awning shed",
+        "done": false
+      },
+      {
+        "id": "1776531897991w2l5ksxalc",
+        "text": "Load and haul clippings to dump",
+        "done": false
+      }
+    ],
+    "createdAt": "2026-04-18T17:05:16.141Z"
+  },
+  {
     "id": "1776531841408",
     "text": "Gardening",
     "note": "",
