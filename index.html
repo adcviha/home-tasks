@@ -566,47 +566,18 @@ async function completeTask(){
 }
 
 /* ── sound ── */
-function playZeldaDone() {
-  try {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    
-    // [time_offset, frequency]
-    // The classic "Secret Discovered" 8-note melody
-    const melody = [
-      [0, 783.99],   // G5
-      [0.1, 739.99], // F#5
-      [0.2, 622.25], // D#5
-      [0.3, 440.00], // A4
-      [0.4, 415.30], // G#4
-      [0.5, 659.25], // E5
-      [0.6, 830.61], // G#5
-      [0.7, 1046.50] // C6
-    ];
-
-    melody.forEach(([t, f], index) => {
-      const osc = ctx.createOscillator();
-      const g = ctx.createGain();
-      
-      osc.connect(g);
-      g.connect(ctx.destination);
-      
-      osc.frequency.value = f;
-      // 'square' gives it the retro NES sound; 
-      // use 'triangle' for a softer SNES feel.
-      osc.type = 'square'; 
-
-      const startTime = ctx.currentTime + t;
-      const duration = 0.15; // Short, snappy notes
-
-      g.gain.setValueAtTime(0.1, startTime);
-      g.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
-      
-      osc.start(startTime);
-      osc.stop(startTime + duration);
+function playDone(){
+  try{
+    const ctx=new(window.AudioContext||window.webkitAudioContext)();
+    [[0,523],[.1,659],[.2,784],[.32,1047],[.48,1319]].forEach(([t,f])=>{
+      const osc=ctx.createOscillator(),g=ctx.createGain();
+      osc.connect(g);g.connect(ctx.destination);
+      osc.frequency.value=f;osc.type='sine';
+      g.gain.setValueAtTime(0.2,ctx.currentTime+t);
+      g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+t+0.4);
+      osc.start(ctx.currentTime+t);osc.stop(ctx.currentTime+t+0.45);
     });
-  } catch (_) {
-    // Silent fail for browsers with blocked audio
-  }
+  }catch(_){}
 }
 
 /* ── confetti ── */
