@@ -635,50 +635,53 @@ async function completeTask(){
     requestAnimationFrame(()=>requestAnimationFrame(()=>{ card.style.transform='scale(0) rotate(10deg)';card.style.opacity='0'; }));
     setTimeout(()=>{ if(card.parentNode)card.remove(); },550);
   }
-  closeModal();playZelda();fireConfetti(cx,cy);
+  closeModal();playZen();fireConfetti(cx,cy);
   tasks=tasks.filter(t=>t.id!==id);
   setTimeout(()=>render(),600);
   try{await saveTasks();}catch{showToast('Could not save — check connection');}
 }
 
-/* ── Zelda chest fanfare (synthesized) ── */
-function playZelda(){
+/* ── Zen task complete chord ── */
+function playZen(){
   try{
     const A=new(window.AudioContext||window.webkitAudioContext)();
     const master=A.createGain();
-    master.gain.setValueAtTime(0.22,A.currentTime);
+    master.gain.setValueAtTime(0,A.currentTime);
     master.connect(A.destination);
-
-    function note(freq,start,dur,type='square',vol=1){
+    
+    function note(freq,start,dur,type='sine',vol=1){
       const o=A.createOscillator();
       const g=A.createGain();
-      o.type=type;o.frequency.value=freq;
-      o.connect(g);g.connect(master);
+      o.type=type;
+      o.frequency.value=freq;
+      o.connect(g);
+      g.connect(master);
+      // gentle fade in
       g.gain.setValueAtTime(0,A.currentTime+start);
-      g.gain.linearRampToValueAtTime(vol,A.currentTime+start+0.01);
-      g.gain.setValueAtTime(vol,A.currentTime+start+dur-0.04);
+      g.gain.linearRampToValueAtTime(vol,A.currentTime+start+0.3);
+      // sustain
+      g.gain.setValueAtTime(vol,A.currentTime+start+dur-0.8);
+      // gentle fade out
       g.gain.linearRampToValueAtTime(0,A.currentTime+start+dur);
       o.start(A.currentTime+start);
       o.stop(A.currentTime+start+dur+0.05);
     }
-
-    // Zelda "item get" fanfare — ascending arpeggio then held chord
-    // B3 D#4 F#4 B4 (quick), then B4 sustained with harmony
-    const B3=246.94, Ds4=311.13, Fs4=369.99, B4=493.88, Ds5=622.25;
-    note(B3,  0,    0.12,'square',0.9);
-    note(Ds4, 0.10, 0.12,'square',0.9);
-    note(Fs4, 0.20, 0.12,'square',0.9);
-    note(B4,  0.30, 0.55,'square',1.0);
-    // harmony on the sustained note
-    note(Ds5, 0.30, 0.55,'square',0.5);
-    note(Fs4, 0.30, 0.55,'square',0.4);
-
-    // fade out master
-    master.gain.setValueAtTime(0.22,A.currentTime+0.6);
-    master.gain.linearRampToValueAtTime(0,A.currentTime+1.0);
+    
+    // G major chord, sustained and harmonically rich
+    const G4=392.00,  B4=493.88,  D5=587.33,  G5=783.99;
+    
+    // Root and octave (fundamental)
+    note(G4,  0, 3.2, 'sine', 0.8);
+    note(G5,  0, 3.2, 'sine', 0.6);
+    // Chord tones with slight detune for richness
+    note(B4,  0, 3.2, 'sine', 0.7);
+    note(D5,  0, 3.2, 'sine', 0.65);
+    
+    // master fade
+    master.gain.setValueAtTime(0.2,A.currentTime+3.1);
+    master.gain.linearRampToValueAtTime(0,A.currentTime+3.5);
   }catch(_){}
 }
-
 /* ── confetti ── */
 function fireConfetti(cx,cy){
   const canvas=$('confetti-canvas');
