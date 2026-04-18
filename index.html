@@ -507,7 +507,7 @@ function setupMobileSwipe(){
     if(!moved&&Math.abs(dy)>Math.abs(dx)){dragging=false;return;}
     moved=true;
     const clamped=(mobileCol===0&&dx>0)?0:(mobileCol===3&&dx<0)?0:dx;
-    setTrackPos(mobileCol,clamped,false);
+    setTrackPos(mobileCol, 0,false);
   },{passive:true});
   vp.addEventListener('touchend',e=>{
     if(!dragging)return;dragging=false;
@@ -661,10 +661,10 @@ function playZelda(){
     voices.forEach(({freq,vol,delay})=>{
       const osc=A.createOscillator();
       const g=A.createGain();
-      // slight detune per voice for subtle chorus warmth
+      // slight  per voice for subtle chorus warmth
       osc.type='sine';
       osc.frequency.value=freq;
-      osc.detune.value=(Math.random()-0.5)*4;
+      // osc.detune.value=(Math.random()-0.5)*4;
       osc.connect(g);g.connect(A.destination);
 
       const t=now+delay;
@@ -682,7 +682,7 @@ function playZelda(){
 /* ── confetti ── */
 function fireConfetti(cx,cy){
   const canvas=$('confetti-canvas');
-  canvas.style.display='block';canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  canvas.style.display='block';canvas.width=document.documentElement.clientWidth;canvas.height=document.documentElement.clientHeight;
   const ctx=canvas.getContext('2d');
   const colors=['#93963b','#6291b5','#4d55a3','#6da892','#f5e87a','#ffffff','#c8d46a','#a0bce0','#b0b8e8','#9dcfb8','#eed86a'];
   const shapes=['rect','circle','ribbon'];
