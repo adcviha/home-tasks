@@ -139,8 +139,19 @@
     "note": "",
     "category": "projects",
     "createdAt": "2026-04-18T15:46:55.967Z",
-    "checklist": [],
-    "priority": "medium"
+    "checklist": [
+      {
+        "id": "1776532368002d9riqegvdok",
+        "text": "Move stuff from upstairs to new location",
+        "done": false
+      },
+      {
+        "id": "177653237390107wrmh52hw57",
+        "text": "Move other items to the dump",
+        "done": false
+      }
+    ],
+    "priority": "easy"
   },
   {
     "id": "1776527189625",
