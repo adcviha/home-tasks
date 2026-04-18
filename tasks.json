@@ -13,7 +13,38 @@
     "text": "Rebuild Fence",
     "note": "",
     "category": "projects",
-    "checklist": [],
+    "checklist": [
+      {
+        "id": "17765321608208t3ttkb2y4v",
+        "text": "Research Auger / Whole digging",
+        "done": false
+      },
+      {
+        "id": "1776532170251niwv4veebn",
+        "text": "Research concrete / pole setting",
+        "done": false
+      },
+      {
+        "id": "17765321749886f2fdx6symq",
+        "text": "Price out project",
+        "done": false
+      },
+      {
+        "id": "17765321781821tnv9rafazl",
+        "text": "Buy materials",
+        "done": false
+      },
+      {
+        "id": "1776532186869o3ibis3inq",
+        "text": "Make sure we know where service lines are",
+        "done": false
+      },
+      {
+        "id": "1776532192805glsjskfikxr",
+        "text": "Dig holes",
+        "done": false
+      }
+    ],
     "createdAt": "2026-04-18T17:06:33.491Z",
     "priority": "deep"
   },
