@@ -1,5 +1,30 @@
 [
   {
+    "id": "1776532567757",
+    "text": "House rearrangements",
+    "note": "Breakfast Nook\nArt Room\nWork Bench\nMusic area",
+    "category": "projects",
+    "checklist": [
+      {
+        "id": "17765325111511pds8v1ydyp",
+        "text": "Clean out upstairs",
+        "done": false
+      },
+      {
+        "id": "1776532537972fs3e3vmbb3a",
+        "text": "Make art room downstairs",
+        "done": false
+      },
+      {
+        "id": "1776532546679il1kduvx4kl",
+        "text": "Aaron organize work bench",
+        "done": false
+      }
+    ],
+    "createdAt": "2026-04-18T17:16:07.757Z",
+    "priority": "medium"
+  },
+  {
     "id": "1776532343359",
     "text": "Controllers",
     "note": "",
