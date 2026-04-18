@@ -22,21 +22,6 @@
     "createdAt": "2026-04-18T15:46:29.625Z"
   },
   {
-    "id": "1776485153381",
-    "text": "Taxes",
-    "note": "",
-    "category": "chores",
-    "createdAt": "2026-04-18T04:05:53.381Z",
-    "checklist": [
-      {
-        "id": "17765275196610e3i4pkkbqtj",
-        "text": "Gather tax paper work",
-        "done": false
-      }
-    ],
-    "priority": "medium"
-  },
-  {
     "id": "1776485086616",
     "text": "Guitar refret",
     "note": "",
