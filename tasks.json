@@ -106,7 +106,9 @@
     "text": "Painting the Mudd Room",
     "note": "",
     "category": "projects",
-    "createdAt": "2026-04-18T01:33:49.709Z"
+    "createdAt": "2026-04-18T01:33:49.709Z",
+    "checklist": [],
+    "priority": "medium"
   },
   {
     "id": "1776470113306",
