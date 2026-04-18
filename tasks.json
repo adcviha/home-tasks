@@ -1,5 +1,12 @@
 [
   {
+    "id": "1776485086616",
+    "text": "Guitar refret",
+    "note": "",
+    "category": "aaron",
+    "createdAt": "2026-04-18T04:04:46.616Z"
+  },
+  {
     "id": "mo4x9qtvjqrco",
     "text": "Finances",
     "note": "",
@@ -188,7 +195,7 @@
       {
         "id": "1776531897991w2l5ksxalc",
         "text": "Load and haul clippings to dump",
-        "done": false
+        "done": true
       },
       {
         "id": "1776531927825s0so0iw27w",
@@ -202,7 +209,8 @@
       }
     ],
     "createdAt": "2026-04-18T17:05:16.141Z",
-    "priority": "deep"
+    "priority": "deep",
+    "updatedAt": "2026-04-18T22:52:49.739Z"
   },
   {
     "id": "1776531841408",
