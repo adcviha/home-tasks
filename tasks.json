@@ -167,7 +167,7 @@
       {
         "id": "1776531772532rpvg0b1u33k",
         "text": "Remove Kale",
-        "done": false
+        "done": true
       },
       {
         "id": "177653177981257d5fy4f9ir",
@@ -196,7 +196,8 @@
       }
     ],
     "createdAt": "2026-04-18T17:04:01.408Z",
-    "priority": "medium"
+    "priority": "medium",
+    "updatedAt": "2026-04-18T22:40:56.093Z"
   },
   {
     "id": "1776527215967",
