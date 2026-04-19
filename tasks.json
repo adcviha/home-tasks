@@ -1,5 +1,15 @@
 [
   {
+    "id": "mo51j7e72beib",
+    "text": "Upstairs bathroom remodel",
+    "note": "The big one",
+    "category": "projects",
+    "checklist": [],
+    "createdAt": "2026-04-19T00:41:32.719Z",
+    "updatedAt": "2026-04-19T00:41:32.719Z",
+    "priority": "deep"
+  },
+  {
     "id": "mo51351ko5q9n",
     "text": "Paint dark trim front hall",
     "note": "Don’t need to mask",
