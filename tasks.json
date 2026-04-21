@@ -1,5 +1,44 @@
 [
   {
+    "id": "mo99xusw7ok22",
+    "text": "call warsh law",
+    "note": "",
+    "category": "chores",
+    "checklist": [],
+    "createdAt": "2026-04-21T23:47:57.872Z",
+    "updatedAt": "2026-04-21T23:47:57.872Z"
+  },
+  {
+    "id": "mo7efhe9sd2wc",
+    "text": "Plan finances for Liza",
+    "note": "",
+    "category": "chores",
+    "checklist": [],
+    "createdAt": "2026-04-20T16:18:06.417Z",
+    "updatedAt": "2026-04-20T16:18:06.417Z",
+    "priority": "easy"
+  },
+  {
+    "id": "mo7ef4v4xywn5",
+    "text": "Keep cleaning upstairs",
+    "note": "",
+    "category": "chores",
+    "checklist": [],
+    "createdAt": "2026-04-20T16:17:50.176Z",
+    "updatedAt": "2026-04-20T16:17:50.176Z",
+    "priority": "easy"
+  },
+  {
+    "id": "mo7eflq0t7qhg",
+    "text": "Taxes",
+    "note": "",
+    "category": "chores",
+    "checklist": [],
+    "createdAt": "2026-04-20T16:18:12.024Z",
+    "updatedAt": "2026-04-20T16:18:12.024Z",
+    "priority": "medium"
+  },
+  {
     "id": "mo99pt5morpun",
     "text": "refile historic taxes for even more money",
     "note": "",
