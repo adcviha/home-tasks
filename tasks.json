@@ -1,13 +1,22 @@
 [
   {
-    "id": "mofzc7acub9a4",
-    "text": "Hang curtain in Mudd room",
+    "id": "mo605ybdign9g",
+    "text": "Organize closed shed",
     "note": "",
     "category": "chores",
     "checklist": [],
-    "createdAt": "2026-04-26T16:25:34.692Z",
-    "updatedAt": "2026-04-26T16:25:34.692Z",
+    "createdAt": "2026-04-19T16:51:00.984Z",
+    "updatedAt": "2026-04-19T16:51:00.984Z",
     "priority": "easy"
+  },
+  {
+    "id": "1776476029709",
+    "text": "Painting the Mudd Room",
+    "note": "",
+    "category": "projects",
+    "createdAt": "2026-04-18T01:33:49.709Z",
+    "checklist": [],
+    "priority": "medium"
   },
   {
     "id": "mofzaj2aod5qg",
