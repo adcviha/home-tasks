@@ -1,5 +1,50 @@
 [
   {
+    "id": "moj764tzx61el",
+    "text": "Buy Seeds",
+    "note": "",
+    "category": "sofia",
+    "checklist": [
+      {
+        "id": "moj74k9u15tjg",
+        "text": "Nasturstium",
+        "done": false
+      },
+      {
+        "id": "moj74r7uptiju",
+        "text": "Poppies",
+        "done": false
+      },
+      {
+        "id": "moj75ccyzddf9",
+        "text": "Marigolds",
+        "done": false
+      },
+      {
+        "id": "moj75i1kmhana",
+        "text": "Dill",
+        "done": false
+      },
+      {
+        "id": "moj75nhx663ur",
+        "text": "Chives",
+        "done": false
+      },
+      {
+        "id": "moj75tp2dybon",
+        "text": "Hollyhocks",
+        "done": false
+      },
+      {
+        "id": "moj76315hytpf",
+        "text": "Calendulas",
+        "done": false
+      }
+    ],
+    "createdAt": "2026-04-28T22:28:07.031Z",
+    "updatedAt": "2026-04-28T22:28:07.031Z"
+  },
+  {
     "id": "moj712qg72exl",
     "text": "Workout Room",
     "note": "",
