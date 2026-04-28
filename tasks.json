@@ -190,7 +190,7 @@
       {
         "id": "mo4x8z6y74kcl",
         "text": "Gather Tax info",
-        "done": false
+        "done": true
       },
       {
         "id": "mo4x91ntym769",
@@ -224,7 +224,7 @@
       }
     ],
     "createdAt": "2026-04-18T22:42:12.883Z",
-    "updatedAt": "2026-04-28T22:24:51.881Z",
+    "updatedAt": "2026-04-28T22:24:58.680Z",
     "priority": "medium"
   },
   {
