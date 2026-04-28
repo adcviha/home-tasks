@@ -1,5 +1,51 @@
 [
   {
+    "id": "moj712qg72exl",
+    "text": "Workout Room",
+    "note": "",
+    "category": "projects",
+    "checklist": [
+      {
+        "id": "moj6wwfymt3km",
+        "text": "Rug",
+        "done": false
+      },
+      {
+        "id": "moj6xa4s13q3v",
+        "text": "Lights - Rice Paper",
+        "done": false
+      },
+      {
+        "id": "moj6xjzfbmqa5",
+        "text": "Lights - String lights",
+        "done": false
+      },
+      {
+        "id": "moj6xq2fwaqsj",
+        "text": "Comfy Chair",
+        "done": false
+      },
+      {
+        "id": "moj6y8x3h7yp8",
+        "text": "Hanging Pothos Vine Plant",
+        "done": false
+      },
+      {
+        "id": "moj6zgcj0kzez",
+        "text": "Wall/Door Hooks",
+        "done": false
+      },
+      {
+        "id": "moj701rtqqa0m",
+        "text": "Remove Queen Bed",
+        "done": false
+      }
+    ],
+    "createdAt": "2026-04-28T22:24:11.030Z",
+    "updatedAt": "2026-04-28T22:24:11.030Z",
+    "priority": "easy"
+  },
+  {
     "id": "mo605ybdign9g",
     "text": "Organize closed shed",
     "note": "",
