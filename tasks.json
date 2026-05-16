@@ -246,7 +246,7 @@
       {
         "id": "1776532778027p52zqggnywd",
         "text": "Tidy kitchen and living room",
-        "done": true
+        "done": false
       },
       {
         "id": "1776532784095huqac771br5",
@@ -271,7 +271,7 @@
     ],
     "createdAt": "2026-04-18T17:20:15.878Z",
     "priority": "medium",
-    "updatedAt": "2026-04-20T16:19:59.116Z"
+    "updatedAt": "2026-05-16T18:21:51.021Z"
   },
   {
     "id": "1776532567757",
