@@ -210,7 +210,7 @@
       {
         "id": "mo4x98wnpikma",
         "text": "Contact Lawyer for bank",
-        "done": false
+        "done": true
       },
       {
         "id": "mo4x9eo04tk5n",
@@ -229,7 +229,7 @@
       }
     ],
     "createdAt": "2026-04-18T22:42:12.883Z",
-    "updatedAt": "2026-04-28T22:24:58.680Z",
+    "updatedAt": "2026-05-16T18:21:33.418Z",
     "priority": "medium"
   },
   {
