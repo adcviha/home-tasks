@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Notes 🐛</title>
+<title>Pillar Notes</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -23,9 +23,8 @@ body { font-family: 'DM Sans', sans-serif; background: #f2efe8; color: #1c1a16; 
 .app-bar { flex-shrink:0; display:flex; align-items:center; justify-content:space-between; padding:14px 22px; background:var(--surface); border-bottom:1px solid var(--border); z-index:50; }
 .app-title { font-family:'Playfair Display',Georgia,serif; font-size:21px; font-weight:500; }
 .app-right { display:flex; align-items:center; gap:8px; }
-.sync-dot { width:7px; height:7px; border-radius:50%; background:#93963b; display:none; animation:pulse 1s infinite; }
-.sync-dot.show { display:block; }
-@keyframes pulse { 0%,100%{opacity:1}50%{opacity:.3} }
+.sync-dot { width:7px; height:7px; border-radius:50%; background:#4caf50; box-shadow:0 0 6px rgba(76,175,80,.5); transition:background .3s; }
+.sync-dot.offline { background:#c62828; box-shadow:0 0 6px rgba(198,40,40,.5); }
 .btn-add { background:var(--text); color:#f2efe8; border:none; border-radius:9px; padding:8px 16px; font-size:14px; font-weight:500; font-family:inherit; cursor:pointer; }
 .btn-icon { background:none; border:1px solid var(--border); border-radius:8px; padding:6px 10px; font-size:16px; cursor:pointer; line-height:1; font-family:inherit; }
 .btn-icon.active { background:var(--text); color:#f2efe8; border-color:transparent; }
@@ -133,30 +132,26 @@ body { font-family: 'DM Sans', sans-serif; background: #f2efe8; color: #1c1a16; 
 <div class="toast" id="toast"></div>
 
 <div id="loading">
-  <div class="loading-title">Notes 🐛</div>
-  <div class="loading-sub">Loading your tasks…</div>
+  <div class="loading-title">Pillar Notes</div>
+  <div class="loading-sub">Connecting…</div>
 </div>
 
 <div id="setup">
   <div class="setup-card">
-    <div class="setup-title">Notes 🐛</div>
-    <p class="setup-sub">Connect to your GitHub repo once per device and you're set.</p>
-    <p class="setup-step">GitHub username</p>
-    <input class="setup-input" id="s-user" placeholder="yourusername" autocomplete="off" autocapitalize="none" spellcheck="false">
-    <p class="setup-step">Repository name</p>
-    <input class="setup-input" id="s-repo" placeholder="home-tasks" autocomplete="off" autocapitalize="none" spellcheck="false">
-    <p class="setup-step">Personal access token</p>
-    <input class="setup-input" id="s-token" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+    <div class="setup-title">Pillar Notes</div>
+    <p class="setup-sub" id="setup-sub">Pick a phrase you and your partner both know. This keeps your notes private.</p>
+    <p class="setup-step" id="setup-step-label">Shared phrase</p>
+    <input class="setup-input" id="s-phrase" type="password" placeholder="e.g. our-favorite-pizza-topping" autocomplete="off" autocapitalize="none" spellcheck="false">
     <div class="setup-error" id="s-error"></div>
-    <button class="btn-setup" id="s-btn" onclick="setupConnect()">Connect & go</button>
+    <button class="btn-setup" id="s-btn" onclick="setupConnect()">Unlock notes</button>
   </div>
 </div>
 
 <div id="app">
   <div class="app-bar">
-    <span class="app-title">Notes 🐛</span>
+    <span class="app-title">Pillar Notes</span>
     <div class="app-right">
-      <div class="sync-dot" id="sync-dot"></div>
+      <div class="sync-dot" id="sync-dot" title="Connected — live sync active"></div>
       <button class="btn-icon" id="sort-btn" onclick="toggleSort()" title="Focus: easy tasks first">⏱</button>
       <button class="btn-icon" onclick="openSettings()">⚙</button>
       <button class="btn-add" onclick="openAdd()">+ Add task</button>
@@ -231,7 +226,20 @@ body { font-family: 'DM Sans', sans-serif; background: #f2efe8; color: #1c1a16; 
   </div>
 </div>
 
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
 <script>
+firebase.initializeApp({
+  apiKey: "AIzaSyAIO_0VAQoiymemqghkuNXukLcLufJ5770",
+  authDomain: "pillar-notes.firebaseapp.com",
+  databaseURL: "https://pillar-notes-default-rtdb.firebaseio.com",
+  projectId: "pillar-notes",
+  storageBucket: "pillar-notes.firebasestorage.app",
+  messagingSenderId: "639406910677",
+  appId: "1:639406910677:web:df7a6c41ea584332b8065c"
+});
+const db = firebase.database();
+
 const CATS = [
   { id:'chores',   label:'Chores',   color:'#93963b', text:'#2a2c0a' },
   { id:'projects', label:'Projects', color:'#6291b5', text:'#ffffff' },
@@ -239,165 +247,156 @@ const CATS = [
   { id:'sofia',    label:'Sofia',    color:'#6da892', text:'#1a3329' },
 ];
 const PRIO = { easy:'Easy', medium:'Medium', deep:'Deep' };
-// sort: easy tasks float to top → ascending effort order
 const PRIO_ORDER = { easy:0, medium:1, deep:2 };
-const CFG_KEY = 'notes-caterpillar-v1';
+const CFG_KEY = 'pillar-notes-v2';
 
-let cfg=null, tasks=[], fileSha=null;
+let tasksMap = {},   // {id: task, ...}  — source of truth from Firebase
+    tasksArr = [];   // derived array for rendering, sorted by createdAt desc
+
 let editingId=null, selCat='chores', selPriority=null, editChecklist=[];
 let mobileCol=0, sortActive=false;
-// Track IDs deleted in this session so merges don't resurrect them
-let deletedIds = new Set();
-let pollTimer=null;
 
 const $=id=>document.getElementById(id);
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 
-function init(){
+/* ── crypto ── */
+async function sha256(text) {
+  const data = new TextEncoder().encode(text);
+  const hash = await crypto.subtle.digest('SHA-256', data);
+  return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+/* ── init ── */
+async function init(){
   buildCatPills();
-  const raw=localStorage.getItem(CFG_KEY);
-  if(raw){ cfg=JSON.parse(raw); showLoading(); loadTasks(); } else showSetup();
   setupMobileSwipe();
   $('f-title').addEventListener('keydown',e=>{ if(e.key==='Enter'){e.preventDefault();saveTask();} });
   $('cl-input').addEventListener('keydown',e=>{ if(e.key==='Enter'){e.preventDefault();addClItem();} });
   document.addEventListener('keydown',e=>{ if(e.key==='Escape')closeModal(); });
-}
 
-/* ── screens ── */
-const showSetup=()=>{ $('setup').classList.add('show'); hideLoading(); };
-const hideSetup=()=>$('setup').classList.remove('show');
-const showLoading=()=>$('loading').classList.add('show');
-const hideLoading=()=>$('loading').classList.remove('show');
-const showApp=()=>{ $('app').classList.add('ready'); hideLoading(); };
-const showSync=()=>$('sync-dot').classList.add('show');
-const hideSync=()=>$('sync-dot').classList.remove('show');
-
-/* ── setup ── */
-async function setupConnect(){
-  const user=$('s-user').value.trim(),repo=$('s-repo').value.trim(),token=$('s-token').value.trim();
-  const err=$('s-error'),btn=$('s-btn');
-  err.classList.remove('show');
-  if(!user||!repo||!token){err.textContent='Please fill in all three fields.';err.classList.add('show');return;}
-  btn.textContent='Connecting…';btn.disabled=true;cfg={user,repo,token};
-  try{
-    await loadTasks();
-    localStorage.setItem(CFG_KEY,JSON.stringify(cfg));
-    hideSetup();
-  } catch {
-    err.textContent='Could not connect — check username, repo name, and token.';
-    err.classList.add('show');btn.textContent='Connect & go';btn.disabled=false;cfg=null;
+  // check if already set up on this device
+  const stored = localStorage.getItem(CFG_KEY);
+  if (stored) {
+    const { phraseHash } = JSON.parse(stored);
+    showLoading();
+    try {
+      const snap = await db.ref('config/passhash').once('value');
+      const remoteHash = snap.val();
+      if (remoteHash && remoteHash === phraseHash) {
+        startLiveSync();
+        return;
+      }
+    } catch(e) {}
+    // hash mismatch or fetch failed — prompt for phrase
+    hideLoading();
   }
-}
-function openSettings(){
-  $('s-user').value=cfg?.user||''; $('s-repo').value=cfg?.repo||''; $('s-token').value=cfg?.token||'';
-  $('s-error').classList.remove('show'); $('s-btn').textContent='Save settings'; $('s-btn').disabled=false;
   showSetup();
 }
 
-/* ── github ── */
-const apiUrl=()=>`https://api.github.com/repos/${cfg.user}/${cfg.repo}/contents/tasks.json`;
-const hdrs=()=>({Authorization:`token ${cfg.token}`,Accept:'application/vnd.github.v3+json','Content-Type':'application/json'});
-function b64enc(s){return btoa(encodeURIComponent(s).replace(/%([0-9A-F]{2})/g,(_,p)=>String.fromCharCode(parseInt(p,16))));}
-function b64dec(b){return decodeURIComponent(Array.from(atob(b.replace(/\s/g,'')),c=>'%'+c.charCodeAt(0).toString(16).padStart(2,'0')).join(''));}
-
-async function fetchRemote(){
-  const res=await fetch(apiUrl(),{headers:hdrs()});
-  if(!res.ok) throw new Error('fetch failed '+res.status);
-  const d=await res.json();
-  let remote=[];
-  try{ remote=JSON.parse(b64dec(d.content)); }catch{}
-  return { sha:d.sha, tasks:remote };
-}
-
-async function loadTasks(){
-  try{
-    const r=await fetchRemote();
-    fileSha=r.sha; tasks=r.tasks;
-  } catch(e){
-    if(e.message.includes('404')){ tasks=[];fileSha=null; await saveTasks(false); }
-    else throw e;
+/* ── screens ── */
+function showSetup(isReset){
+  if (isReset) {
+    $('setup-sub').textContent = 'Enter your shared phrase again to reconnect.';
+    $('setup-step-label').textContent = 'Shared phrase';
+    $('s-btn').textContent = 'Unlock notes';
   }
-  showApp(); render(); startPolling();
+  $('setup').classList.add('show');
+  hideLoading();
+  setTimeout(()=>$('s-phrase').focus(), 120);
 }
+function hideSetup(){ $('setup').classList.remove('show'); }
+function showLoading(){ $('loading').classList.add('show'); }
+function hideLoading(){ $('loading').classList.remove('show'); }
+function showApp(){ $('app').classList.add('ready'); hideLoading(); }
 
-/* ── smart merge ──
-   Called when our local SHA is stale (someone else saved while we were editing).
-   Strategy:
-     - Union of remote + local tasks by id
-     - If same id exists in both, pick the one with the newer updatedAt
-     - Any id in deletedIds is stripped out (respect our deletions)
-     - Any id that only exists in remote and NOT in deletedIds is kept (respect their adds)
-*/
-function mergeTasks(remote, local){
-  const map = new Map();
-  for(const t of remote){
-    if(!deletedIds.has(t.id)) map.set(t.id, t);
-  }
-  for(const t of local){
-    if(deletedIds.has(t.id)) continue;
-    if(map.has(t.id)){
-      // keep whichever was updated more recently
-      const existing=map.get(t.id);
-      const remoteTime=new Date(existing.updatedAt||existing.createdAt).getTime();
-      const localTime=new Date(t.updatedAt||t.createdAt).getTime();
-      if(localTime>remoteTime) map.set(t.id,t);
-    } else {
-      map.set(t.id,t);
-    }
-  }
-  // preserve remote ordering for tasks that only exist there; local-added go to front
-  const remoteIds=new Set(remote.map(t=>t.id));
-  const localOnly=[...map.values()].filter(t=>!remoteIds.has(t.id));
-  const rest=[...map.values()].filter(t=>remoteIds.has(t.id))
-    .sort((a,b)=>remote.findIndex(t=>t.id===a.id)-remote.findIndex(t=>t.id===b.id));
-  return [...localOnly, ...rest];
-}
+/* ── setup ── */
+async function setupConnect(){
+  const phrase = $('s-phrase').value.trim();
+  const err = $('s-error'), btn = $('s-btn');
+  err.classList.remove('show');
+  if (!phrase) { err.textContent='Please enter a shared phrase.'; err.classList.add('show'); return; }
+  btn.textContent='Connecting…'; btn.disabled = true;
 
-async function saveTasks(indicator=true){
-  if(indicator) showSync();
-  const content=b64enc(JSON.stringify(tasks,null,2));
-  const body={message:'Update tasks',content};
-  if(fileSha) body.sha=fileSha;
-  const res=await fetch(apiUrl(),{method:'PUT',headers:hdrs(),body:JSON.stringify(body)});
+  try {
+    const phraseHash = await sha256(phrase);
+    const snap = await db.ref('config/passhash').once('value');
+    const remoteHash = snap.val();
 
-  if(res.status===409 || res.status===422){
-    // SHA conflict — someone else saved first. Fetch latest, merge, retry.
-    showToast('Syncing with latest changes…');
-    const remote=await fetchRemote();
-    tasks=mergeTasks(remote.tasks, tasks);
-    fileSha=remote.sha;
-    render();
-    // retry
-    const body2={message:'Update tasks (merged)',content:b64enc(JSON.stringify(tasks,null,2)),sha:fileSha};
-    const res2=await fetch(apiUrl(),{method:'PUT',headers:hdrs(),body:JSON.stringify(body2)});
-    if(!res2.ok){hideSync();throw new Error('retry failed');}
-    fileSha=(await res2.json()).content.sha;
-  } else if(!res.ok){
-    hideSync();throw new Error('save failed '+res.status);
-  } else {
-    fileSha=(await res.json()).content.sha;
-  }
-  hideSync();
-}
-
-/* ── polling ──
-   Every 45s, check if remote SHA changed. If so, merge remote into local
-   (preserving any unsaved local edits) and re-render silently.
-*/
-function startPolling(){
-  clearInterval(pollTimer);
-  pollTimer=setInterval(async()=>{
-    if(!cfg||!fileSha) return;
-    try{
-      const remote=await fetchRemote();
-      if(remote.sha!==fileSha){
-        // Remote changed — merge their updates into our current state
-        tasks=mergeTasks(remote.tasks, tasks);
-        fileSha=remote.sha;
-        render();
+    if (remoteHash) {
+      // existing setup — verify phrase matches
+      if (remoteHash !== phraseHash) {
+        err.textContent='That phrase doesn\'t match. Try again.';
+        err.classList.add('show');
+        btn.textContent='Unlock notes'; btn.disabled = false;
+        return;
       }
-    }catch{}
-  }, 45000);
+    } else {
+      // first ever setup — create the config
+      await db.ref('config/passhash').set(phraseHash);
+    }
+    localStorage.setItem(CFG_KEY, JSON.stringify({ phraseHash }));
+    hideSetup();
+    startLiveSync();
+  } catch(e) {
+    err.textContent='Could not connect — check your internet.';
+    err.classList.add('show');
+    btn.textContent='Unlock notes'; btn.disabled = false;
+  }
+}
+
+function openSettings(){
+  localStorage.removeItem(CFG_KEY);
+  tasksMap = {}; tasksArr = [];
+  if (unsub) { unsub(); unsub = null; }
+  $('app').classList.remove('ready');
+  showSetup(true);
+}
+
+/* ── real-time sync ── */
+let unsub = null;
+
+function startLiveSync(){
+  showLoading();
+  $('loading-sub').textContent = 'Loading your tasks…';
+
+  unsub = db.ref('tasks').on('value', snap => {
+    tasksMap = snap.val() || {};
+    tasksArr = Object.values(tasksMap).sort((a,b) =>
+      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+    hideLoading();
+    showApp();
+    render();
+  }, err => {
+    console.error('Firebase disconnected:', err);
+    $('sync-dot').classList.add('offline');
+    if (!$('app').classList.contains('ready')) {
+      hideLoading();
+      showToast('Connection lost — retrying…');
+    }
+  });
+
+  // monitor connection state
+  db.ref('.info/connected').on('value', snap => {
+    if (snap.val() === true) {
+      $('sync-dot').classList.remove('offline');
+    } else {
+      $('sync-dot').classList.add('offline');
+    }
+  });
+}
+
+/* ── save helpers ── */
+function saveTaskToDB(task) {
+  return db.ref('tasks/' + task.id).set(task).catch(() => {
+    showToast('Could not save — check connection');
+  });
+}
+
+function deleteTaskFromDB(id) {
+  return db.ref('tasks/' + id).remove().catch(() => {
+    showToast('Could not save — check connection');
+  });
 }
 
 /* ── sort ── */
@@ -445,14 +444,14 @@ function cardHTML(t){
 
 function renderDesktop(){
   $('grid').innerHTML=CATS.map(c=>{
-    const col=sortedCol(tasks.filter(t=>t.category===c.id));
+    const col=sortedCol(tasksArr.filter(t=>t.category===c.id));
     return `<div><div class="col-title">${c.label}</div>${col.length?col.map(cardHTML).join(''):'<div class="empty-col">Nothing here yet</div>'}</div>`;
   }).join('');
   attachCardEvents($('grid'));
 }
 function renderMobilePanels(){
   CATS.forEach((cat,i)=>{
-    const col=sortedCol(tasks.filter(t=>t.category===cat.id));
+    const col=sortedCol(tasksArr.filter(t=>t.category===cat.id));
     $('m-panel-'+i).innerHTML=col.length?col.map(cardHTML).join(''):'<div class="empty-col" style="margin-top:32px">Nothing here yet</div>';
     attachCardEvents($('m-panel-'+i));
   });
@@ -472,14 +471,13 @@ function attachCardEvents(container){
 }
 
 function cardToggleCheck(taskId,itemId){
-  const t=tasks.find(x=>x.id===taskId);if(!t)return;
-  const item=(t.checklist||[]).find(i=>i.id===itemId);if(!item)return;
+  const t=tasksMap[taskId]; if(!t)return;
+  const item=(t.checklist||[]).find(i=>i.id===itemId); if(!item)return;
   item.done=!item.done;
   t.updatedAt=new Date().toISOString();
   render();
-  // debounced save for checklist taps
   clearTimeout(cardToggleCheck._t);
-  cardToggleCheck._t=setTimeout(async()=>{ try{await saveTasks();}catch{showToast('Could not sync');} },1200);
+  cardToggleCheck._t=setTimeout(()=>saveTaskToDB(t), 600);
 }
 
 /* ── mobile swipe ── */
@@ -506,12 +504,11 @@ function setupMobileSwipe(){
     const dx=e.touches[0].clientX-sx,dy=e.touches[0].clientY-sy;
     if(!moved&&Math.abs(dy)>Math.abs(dx)){dragging=false;return;}
     moved=true;
-    const clamped=(mobileCol===0&&dx>0)?0:(mobileCol===3&&dx<0)?0:dx;
     setTrackPos(mobileCol, 0,false);
   },{passive:true});
   vp.addEventListener('touchend',e=>{
     if(!dragging)return;dragging=false;
-    if(!moved)return; // tap — don't interfere with click
+    if(!moved)return;
     const dx=e.changedTouches[0].clientX-sx;
     if(Math.abs(dx)>52){ if(dx<0&&mobileCol<3)mobileCol++; else if(dx>0&&mobileCol>0)mobileCol--; }
     updateMobileHeader();setTrackPos(mobileCol,0,true);buildDots();
@@ -568,7 +565,7 @@ function openAdd(){
   setTimeout(()=>$('f-title').focus(),80);
 }
 function openEdit(id){
-  const t=tasks.find(x=>x.id===id);if(!t)return;
+  const t=tasksMap[id]; if(!t)return;
   editingId=id;selCat=t.category;selPriority=t.priority||null;
   editChecklist=JSON.parse(JSON.stringify(t.checklist||[]));
   const c=CATS.find(x=>x.id===t.category)||CATS[0];
@@ -602,30 +599,27 @@ async function saveTask(){
   const cl=JSON.parse(JSON.stringify(editChecklist));
   const now=new Date().toISOString();
   if(editingId){
-    const t=tasks.find(x=>x.id===editingId);
+    const t=tasksMap[editingId];
     if(t){ t.text=text;t.note=note;t.category=cat;t.checklist=cl;t.updatedAt=now;
-      if(selPriority)t.priority=selPriority; else delete t.priority; }
+      if(selPriority)t.priority=selPriority; else delete t.priority;
+      saveTaskToDB(t); }
   } else {
     const task={id:uid(),text,note,category:cat,checklist:cl,createdAt:now,updatedAt:now};
     if(selPriority)task.priority=selPriority;
-    tasks.unshift(task);
+    saveTaskToDB(task);
   }
-  closeModal();render();
-  try{await saveTasks();}catch{showToast('Could not save — check connection');}
+  closeModal();
 }
 
 async function deleteTask(){
   if(!editingId)return;
-  deletedIds.add(editingId);
-  tasks=tasks.filter(t=>t.id!==editingId);
-  closeModal();render();
-  try{await saveTasks();}catch{showToast('Could not save — check connection');}
+  deleteTaskFromDB(editingId);
+  closeModal();
 }
 
 async function completeTask(){
   if(!editingId)return;
   const id=editingId;
-  deletedIds.add(id);
   const card=$('card-'+id);
   let cx=window.innerWidth/2,cy=window.innerHeight/2;
   if(card){
@@ -636,9 +630,8 @@ async function completeTask(){
     setTimeout(()=>{ if(card.parentNode)card.remove(); },550);
   }
   closeModal();playZelda();fireConfetti(cx,cy);
-  tasks=tasks.filter(t=>t.id!==id);
-  setTimeout(()=>render(),600);
-  try{await saveTasks();}catch{showToast('Could not save — check connection');}
+  deleteTaskFromDB(id);
+  // Firebase 'onValue' will remove the card on next render
 }
 
 /* ── Zelda chest fanfare (synthesized) ── */
@@ -646,33 +639,25 @@ function playZelda(){
   try{
     const A=new(window.AudioContext||window.webkitAudioContext)();
     const now=A.currentTime;
-
-    // Warm Fmaj9 chord: F3, A3, C4, E4, G4
-    // Sine waves for softness, each voice staggered in slightly for warmth
-    // Long slow attack (~0.18s), full sustain, then a long gentle tail (~1.8s)
     const voices=[
-      {freq:174.61, vol:0.18, delay:0.00},  // F3  — root, warm bass
-      {freq:220.00, vol:0.14, delay:0.00},  // A3  — major third
-      {freq:261.63, vol:0.13, delay:0.00},  // C4  — fifth
-      {freq:329.63, vol:0.11, delay:0.00},  // E4  — major seventh
-      {freq:392.00, vol:0.08, delay:0.00},  // G4  — ninth, airy top
+      {freq:174.61, vol:0.18, delay:0.00},
+      {freq:220.00, vol:0.14, delay:0.00},
+      {freq:261.63, vol:0.13, delay:0.00},
+      {freq:329.63, vol:0.11, delay:0.00},
+      {freq:392.00, vol:0.08, delay:0.00},
     ];
-
     voices.forEach(({freq,vol,delay})=>{
       const osc=A.createOscillator();
       const g=A.createGain();
-      // slight  per voice for subtle chorus warmth
       osc.type='sine';
       osc.frequency.value=freq;
       osc.detune.value=(Math.random()-0.5)*4;
       osc.connect(g);g.connect(A.destination);
-
       const t=now+delay;
       g.gain.setValueAtTime(vol, t+0.01);
-      g.gain.linearRampToValueAtTime(vol, t+0.18);   // gentle rise
-      g.gain.setValueAtTime(vol, t+0.7);              // hold
-      g.gain.exponentialRampToValueAtTime(0.0001, t+2.6); // long peaceful fade
-
+      g.gain.linearRampToValueAtTime(vol, t+0.18);
+      g.gain.setValueAtTime(vol, t+0.7);
+      g.gain.exponentialRampToValueAtTime(0.0001, t+2.6);
       osc.start(t);
       osc.stop(t+2.7);
     });
