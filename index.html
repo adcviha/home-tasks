@@ -229,12 +229,10 @@ body { font-family: 'DM Sans', sans-serif; background: #f2efe8; color: #1c1a16; 
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
 <script>
-(function(){
 if (typeof firebase === 'undefined') {
   document.body.innerHTML = '<div style="padding:40px;text-align:center;font-family:sans-serif"><h2>Unable to load</h2><p>Firebase SDK failed to load. Check your internet connection and try again.</p></div>';
-  return;
+  throw new Error('Firebase SDK not loaded');
 }
-try {
 
 firebase.initializeApp({
   apiKey: "AIzaSyAIO_0VAQoiymemqghkuNXukLcLufJ5770",
@@ -743,11 +741,6 @@ function showToast(msg){const t=$('toast');t.textContent=msg;t.classList.add('sh
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
 init();
-
-}catch(e){
-  document.body.innerHTML = '<div style="padding:40px;text-align:center;font-family:sans-serif;background:#f2efe8;height:100vh"><h2 style="font-size:22px">Something went wrong</h2><p style="color:#9a9689;margin:12px 0">Try refreshing the page. If this keeps happening, clear your localStorage for this site.</p><pre style="font-size:12px;background:#fff;padding:12px;border-radius:8px;max-width:500px;margin:0 auto;text-align:left;overflow:auto">'+e.message+'</pre></div>';
-}
-})();
 </script>
 </body>
 </html>
