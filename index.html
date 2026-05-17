@@ -262,10 +262,10 @@ let tasksMap = {},   // {id: task, ...}  — source of truth from Firebase
 
 let editingId=null, selCat='chores', selPriority=null, editChecklist=[];
 let mobileCol=0, sortActive=false;
-let ourDeviceId = uid();  // so we don't play fanfare for our own completions
 
 const $=id=>document.getElementById(id);
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+let ourDeviceId = uid();  // so we don't play fanfare for our own completions
 
 /* ── crypto ── */
 async function sha256(text) {
