@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Pillar Notes</title>
+<title>Pillar Notes 🐛</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -132,13 +132,13 @@ body { font-family: 'DM Sans', sans-serif; background: #f2efe8; color: #1c1a16; 
 <div class="toast" id="toast"></div>
 
 <div id="loading">
-  <div class="loading-title">Pillar Notes</div>
-  <div class="loading-sub">Connecting…</div>
+  <div class="loading-title">Pillar Notes 🐛</div>
+  <div class="loading-sub" id="loading-sub">Connecting…</div>
 </div>
 
 <div id="setup">
   <div class="setup-card">
-    <div class="setup-title">Pillar Notes</div>
+    <div class="setup-title">Pillar Notes 🐛</div>
     <p class="setup-sub" id="setup-sub">Pick a phrase you and your partner both know. This keeps your notes private.</p>
     <p class="setup-step" id="setup-step-label">Shared phrase</p>
     <input class="setup-input" id="s-phrase" type="password" placeholder="e.g. our-favorite-pizza-topping" autocomplete="off" autocapitalize="none" spellcheck="false">
@@ -149,7 +149,7 @@ body { font-family: 'DM Sans', sans-serif; background: #f2efe8; color: #1c1a16; 
 
 <div id="app">
   <div class="app-bar">
-    <span class="app-title">Pillar Notes</span>
+    <span class="app-title">Pillar Notes 🐛</span>
     <div class="app-right">
       <div class="sync-dot" id="sync-dot" title="Connected — live sync active"></div>
       <button class="btn-icon" id="sort-btn" onclick="toggleSort()" title="Focus: easy tasks first">⏱</button>
@@ -359,7 +359,8 @@ function startLiveSync(){
   showLoading();
   $('loading-sub').textContent = 'Loading your tasks…';
 
-  unsub = db.ref('tasks').on('value', snap => {
+  // Load initial data (guaranteed to resolve, unlike on() which can hang on file://)
+  db.ref('tasks').once('value', snap => {
     tasksMap = snap.val() || {};
     tasksArr = Object.values(tasksMap).sort((a,b) =>
       new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
@@ -367,13 +368,18 @@ function startLiveSync(){
     hideLoading();
     showApp();
     render();
-  }, err => {
-    console.error('Firebase disconnected:', err);
-    $('sync-dot').classList.add('offline');
-    if (!$('app').classList.contains('ready')) {
-      hideLoading();
-      showToast('Connection lost — retrying…');
-    }
+  }, () => {
+    hideLoading();
+    showToast('Could not load tasks — check connection');
+  });
+
+  // Then set up real-time listener for live sync
+  unsub = db.ref('tasks').on('value', snap => {
+    tasksMap = snap.val() || {};
+    tasksArr = Object.values(tasksMap).sort((a,b) =>
+      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+    render();
   });
 
   // monitor connection state
