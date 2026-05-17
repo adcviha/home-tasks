@@ -255,6 +255,7 @@ let tasksMap = {},   // {id: task, ...}  — source of truth from Firebase
 
 let editingId=null, selCat='chores', selPriority=null, editChecklist=[];
 let mobileCol=0, sortActive=false;
+let ourDeviceId = uid();  // so we don't play fanfare for our own completions
 
 const $=id=>document.getElementById(id);
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
@@ -355,6 +356,8 @@ function openSettings(){
 /* ── real-time sync ── */
 let unsub = null;
 
+let lastFanfareAt = 0;
+
 function startLiveSync(){
   showLoading();
   $('loading-sub').textContent = 'Loading your tasks…';
@@ -380,6 +383,19 @@ function startLiveSync(){
       new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     );
     render();
+  });
+
+  // Listen for completion fanfare from other devices
+  db.ref('config/lastFanfare').on('value', snap => {
+    const f = snap.val();
+    if (!f || !f.ts) return;
+    if (f.ts <= lastFanfareAt) return;
+    lastFanfareAt = f.ts;
+    // Don't double-play if we're the ones who triggered it
+    if (f.by === ourDeviceId) return;
+    playZelda();
+    fireConfetti(f.cx, f.cy);
+    showToast('🎉 ' + esc(f.text) + ' — completed!');
   });
 
   // monitor connection state
@@ -626,6 +642,7 @@ async function deleteTask(){
 async function completeTask(){
   if(!editingId)return;
   const id=editingId;
+  const t = tasksMap[id];
   const card=$('card-'+id);
   let cx=window.innerWidth/2,cy=window.innerHeight/2;
   if(card){
@@ -636,8 +653,13 @@ async function completeTask(){
     setTimeout(()=>{ if(card.parentNode)card.remove(); },550);
   }
   closeModal();playZelda();fireConfetti(cx,cy);
+  // Broadcast to other devices
+  if (t) {
+    db.ref('config/lastFanfare').set({
+      text: t.text, cx, cy, ts: Date.now(), by: ourDeviceId
+    });
+  }
   deleteTaskFromDB(id);
-  // Firebase 'onValue' will remove the card on next render
 }
 
 /* ── Zelda chest fanfare (synthesized) ── */
