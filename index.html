@@ -390,6 +390,9 @@ function startLiveSync(){
     render();
   });
 
+  // Only play fanfares created after we connected (not from past on initial load)
+  lastFanfareAt = Date.now();
+
   // Listen for completion fanfare from other devices
   db.ref('config/lastFanfare').on('value', snap => {
     const f = snap.val();

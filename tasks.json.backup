@@ -1,0 +1,475 @@
+[
+  {
+    "id": "mp8ocetmezlrt",
+    "text": "Grab $$ from bank for Chair",
+    "note": "",
+    "category": "chores",
+    "checklist": [],
+    "createdAt": "2026-05-16T18:23:07.786Z",
+    "updatedAt": "2026-05-16T18:23:13.384Z",
+    "priority": "easy"
+  },
+  {
+    "id": "mp8obxoxlnp0d",
+    "text": "Grab Spock Chair from storage",
+    "note": "",
+    "category": "chores",
+    "checklist": [],
+    "createdAt": "2026-05-16T18:22:45.585Z",
+    "updatedAt": "2026-05-16T18:22:45.585Z",
+    "priority": "medium"
+  },
+  {
+    "id": "moj764tzx61el",
+    "text": "Buy Seeds",
+    "note": "",
+    "category": "sofia",
+    "checklist": [
+      {
+        "id": "moj74k9u15tjg",
+        "text": "Nasturstium",
+        "done": false
+      },
+      {
+        "id": "moj74r7uptiju",
+        "text": "Poppies",
+        "done": false
+      },
+      {
+        "id": "moj75ccyzddf9",
+        "text": "Marigolds",
+        "done": false
+      },
+      {
+        "id": "moj75i1kmhana",
+        "text": "Dill",
+        "done": false
+      },
+      {
+        "id": "moj75nhx663ur",
+        "text": "Chives",
+        "done": false
+      },
+      {
+        "id": "moj75tp2dybon",
+        "text": "Hollyhocks",
+        "done": false
+      },
+      {
+        "id": "moj76315hytpf",
+        "text": "Calendulas",
+        "done": false
+      }
+    ],
+    "createdAt": "2026-04-28T22:28:07.031Z",
+    "updatedAt": "2026-04-28T22:28:07.031Z"
+  },
+  {
+    "id": "moj712qg72exl",
+    "text": "Workout Room",
+    "note": "",
+    "category": "projects",
+    "checklist": [
+      {
+        "id": "moj6wwfymt3km",
+        "text": "Rug",
+        "done": false
+      },
+      {
+        "id": "moj6xa4s13q3v",
+        "text": "Lights - Rice Paper",
+        "done": false
+      },
+      {
+        "id": "moj6xjzfbmqa5",
+        "text": "Lights - String lights",
+        "done": false
+      },
+      {
+        "id": "moj6xq2fwaqsj",
+        "text": "Comfy Chair",
+        "done": false
+      },
+      {
+        "id": "moj6y8x3h7yp8",
+        "text": "Hanging Pothos Vine Plant",
+        "done": false
+      },
+      {
+        "id": "moj6zgcj0kzez",
+        "text": "Wall/Door Hooks",
+        "done": false
+      },
+      {
+        "id": "moj701rtqqa0m",
+        "text": "Remove Queen Bed",
+        "done": false
+      }
+    ],
+    "createdAt": "2026-04-28T22:24:11.030Z",
+    "updatedAt": "2026-04-28T22:24:11.030Z",
+    "priority": "easy"
+  },
+  {
+    "id": "mofzaj2aod5qg",
+    "text": "Organize shed & under awning area",
+    "note": "",
+    "category": "chores",
+    "checklist": [],
+    "createdAt": "2026-04-26T16:24:16.642Z",
+    "updatedAt": "2026-04-26T16:24:32.592Z",
+    "priority": "deep"
+  },
+  {
+    "id": "mofz8q8iq1io9",
+    "text": "Clean SUV",
+    "note": "",
+    "category": "chores",
+    "checklist": [],
+    "createdAt": "2026-04-26T16:22:52.624Z",
+    "updatedAt": "2026-04-26T16:24:24.008Z",
+    "priority": "easy"
+  },
+  {
+    "id": "mo99pt5morpun",
+    "text": "refile historic taxes for even more money",
+    "note": "",
+    "category": "projects",
+    "checklist": [],
+    "createdAt": "2026-04-21T23:41:42.490Z",
+    "updatedAt": "2026-04-21T23:41:42.490Z",
+    "priority": "medium"
+  },
+  {
+    "id": "mo6068s06x7g0",
+    "text": "Repair shed door / prep for paint",
+    "note": "",
+    "category": "chores",
+    "checklist": [],
+    "createdAt": "2026-04-19T16:51:14.544Z",
+    "updatedAt": "2026-04-19T16:51:14.544Z",
+    "priority": "easy"
+  },
+  {
+    "id": "mo51jh1rlyaka",
+    "text": "IKEA kitchen Reno",
+    "note": "",
+    "category": "aaron",
+    "checklist": [],
+    "createdAt": "2026-04-19T00:41:45.231Z",
+    "updatedAt": "2026-04-19T00:41:45.231Z"
+  },
+  {
+    "id": "mo51j7e72beib",
+    "text": "Upstairs bathroom remodel",
+    "note": "The big one",
+    "category": "projects",
+    "checklist": [],
+    "createdAt": "2026-04-19T00:41:32.719Z",
+    "updatedAt": "2026-04-19T00:41:32.719Z",
+    "priority": "deep"
+  },
+  {
+    "id": "mo51351ko5q9n",
+    "text": "Paint dark trim front hall",
+    "note": "Don’t need to mask",
+    "category": "projects",
+    "checklist": [],
+    "createdAt": "2026-04-19T00:29:03.176Z",
+    "updatedAt": "2026-04-19T00:29:03.176Z",
+    "priority": "easy"
+  },
+  {
+    "id": "mo50tzp0uxkot",
+    "text": "Organize coffee drawer",
+    "note": "",
+    "category": "aaron",
+    "checklist": [],
+    "createdAt": "2026-04-19T00:21:56.340Z",
+    "updatedAt": "2026-04-19T00:21:56.340Z",
+    "priority": "easy"
+  },
+  {
+    "id": "1776485086616",
+    "text": "Guitar refret",
+    "note": "",
+    "category": "aaron",
+    "createdAt": "2026-04-18T04:04:46.616Z"
+  },
+  {
+    "id": "mo4x9qtvjqrco",
+    "text": "Finances",
+    "note": "",
+    "category": "chores",
+    "checklist": [
+      {
+        "id": "mo4x8z6y74kcl",
+        "text": "Gather Tax info",
+        "done": true
+      },
+      {
+        "id": "mo4x91ntym769",
+        "text": "Complete Taxes",
+        "done": true
+      },
+      {
+        "id": "mo4x94llab1yh",
+        "text": "Review Spending",
+        "done": false
+      },
+      {
+        "id": "mo4x98wnpikma",
+        "text": "Contact Lawyer for bank",
+        "done": true
+      },
+      {
+        "id": "mo4x9eo04tk5n",
+        "text": "Reduce Car insurance amount",
+        "done": false
+      },
+      {
+        "id": "mo4x9ipp2ugye",
+        "text": "List items for sale",
+        "done": false
+      },
+      {
+        "id": "mo4x9q7xf24kq",
+        "text": "Set monthly budget?",
+        "done": false
+      }
+    ],
+    "createdAt": "2026-04-18T22:42:12.883Z",
+    "updatedAt": "2026-05-16T18:21:33.418Z",
+    "priority": "medium"
+  },
+  {
+    "id": "1776532815878",
+    "text": "Cleaning",
+    "note": "",
+    "category": "chores",
+    "checklist": [
+      {
+        "id": "1776532763710diz8ux1l0uo",
+        "text": "Vaccum mainfloor",
+        "done": false
+      },
+      {
+        "id": "1776532778027p52zqggnywd",
+        "text": "Tidy kitchen and living room",
+        "done": false
+      },
+      {
+        "id": "1776532784095huqac771br5",
+        "text": "Clean bathroom",
+        "done": false
+      },
+      {
+        "id": "17765327923779lnlk6taxts",
+        "text": "Put away clean laundry",
+        "done": false
+      },
+      {
+        "id": "1776532802545vuu41813iga",
+        "text": "Tidy & clean Audry's room",
+        "done": false
+      },
+      {
+        "id": "1776532814795vqbsix08qmd",
+        "text": "Tidy & clean our bedroom",
+        "done": false
+      }
+    ],
+    "createdAt": "2026-04-18T17:20:15.878Z",
+    "priority": "medium",
+    "updatedAt": "2026-05-16T18:21:51.021Z"
+  },
+  {
+    "id": "1776532567757",
+    "text": "House rearrangements",
+    "note": "Breakfast Nook\nArt Room\nWork Bench\nMusic area",
+    "category": "projects",
+    "checklist": [
+      {
+        "id": "17765325111511pds8v1ydyp",
+        "text": "Clean out upstairs",
+        "done": false
+      },
+      {
+        "id": "1776532537972fs3e3vmbb3a",
+        "text": "Make art room downstairs",
+        "done": false
+      },
+      {
+        "id": "1776532546679il1kduvx4kl",
+        "text": "Aaron organize work bench",
+        "done": false
+      }
+    ],
+    "createdAt": "2026-04-18T17:16:07.757Z",
+    "priority": "medium"
+  },
+  {
+    "id": "1776532343359",
+    "text": "Controllers",
+    "note": "",
+    "category": "aaron",
+    "checklist": [
+      {
+        "id": "1776532339004k8zo8xlechn",
+        "text": "Organize controller inventory",
+        "done": false
+      }
+    ],
+    "createdAt": "2026-04-18T17:12:23.359Z",
+    "priority": "medium"
+  },
+  {
+    "id": "1776532051958",
+    "text": "Paint stencil in Mudd Room",
+    "note": "",
+    "category": "sofia",
+    "checklist": [],
+    "createdAt": "2026-04-18T17:07:31.958Z",
+    "priority": "medium"
+  },
+  {
+    "id": "1776531993491",
+    "text": "Rebuild Fence",
+    "note": "",
+    "category": "projects",
+    "checklist": [
+      {
+        "id": "17765321608208t3ttkb2y4v",
+        "text": "Research Auger / Whole digging",
+        "done": false
+      },
+      {
+        "id": "1776532170251niwv4veebn",
+        "text": "Research concrete / pole setting",
+        "done": false
+      },
+      {
+        "id": "17765321749886f2fdx6symq",
+        "text": "Price out project",
+        "done": false
+      },
+      {
+        "id": "17765321781821tnv9rafazl",
+        "text": "Buy materials",
+        "done": false
+      },
+      {
+        "id": "1776532186869o3ibis3inq",
+        "text": "Make sure we know where service lines are",
+        "done": false
+      },
+      {
+        "id": "1776532192805glsjskfikxr",
+        "text": "Dig holes",
+        "done": false
+      }
+    ],
+    "createdAt": "2026-04-18T17:06:33.491Z",
+    "priority": "deep"
+  },
+  {
+    "id": "1776531916141",
+    "text": "Yardwork",
+    "note": "",
+    "category": "projects",
+    "checklist": [
+      {
+        "id": "1776531881958fstl8hm8agm",
+        "text": "Clear out under awning shed",
+        "done": false
+      },
+      {
+        "id": "1776531897991w2l5ksxalc",
+        "text": "Load and haul clippings to dump",
+        "done": true
+      },
+      {
+        "id": "1776531927825s0so0iw27w",
+        "text": "Plan paving stone pathway",
+        "done": false
+      },
+      {
+        "id": "1776531952542tnuxf61bmic",
+        "text": "Plan grape vine lattice",
+        "done": false
+      }
+    ],
+    "createdAt": "2026-04-18T17:05:16.141Z",
+    "priority": "deep",
+    "updatedAt": "2026-04-18T22:52:49.739Z"
+  },
+  {
+    "id": "1776531841408",
+    "text": "Gardening",
+    "note": "",
+    "category": "chores",
+    "checklist": [
+      {
+        "id": "1776531772532rpvg0b1u33k",
+        "text": "Remove Kale",
+        "done": true
+      },
+      {
+        "id": "177653177981257d5fy4f9ir",
+        "text": "Weed mint",
+        "done": false
+      },
+      {
+        "id": "17765317883608wuacubpb4d",
+        "text": "Prune Lavender",
+        "done": false
+      },
+      {
+        "id": "1776531803108lm6g6p7034j",
+        "text": "Tidy front beds",
+        "done": false
+      },
+      {
+        "id": "1776531813191p63e4r0ede",
+        "text": "Clean up rocks",
+        "done": true
+      },
+      {
+        "id": "177653183737501vb1ts7mejl",
+        "text": "Mow and Weedwack grass",
+        "done": true
+      }
+    ],
+    "createdAt": "2026-04-18T17:04:01.408Z",
+    "priority": "medium",
+    "updatedAt": "2026-04-18T22:41:05.114Z"
+  },
+  {
+    "id": "1776527215967",
+    "text": "Clean out upstairs",
+    "note": "",
+    "category": "projects",
+    "createdAt": "2026-04-18T15:46:55.967Z",
+    "checklist": [
+      {
+        "id": "1776532368002d9riqegvdok",
+        "text": "Move stuff from upstairs to new location",
+        "done": false
+      },
+      {
+        "id": "177653237390107wrmh52hw57",
+        "text": "Move other items to the dump",
+        "done": false
+      }
+    ],
+    "priority": "medium",
+    "updatedAt": "2026-04-19T00:29:24.410Z"
+  },
+  {
+    "id": "1776527189625",
+    "text": "Fix up F150",
+    "note": "",
+    "category": "aaron",
+    "createdAt": "2026-04-18T15:46:29.625Z"
+  }
+]
